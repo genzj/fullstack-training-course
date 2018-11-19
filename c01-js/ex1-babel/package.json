@@ -1,0 +1,20 @@
+{
+  "name": "babel-test",
+  "version": "1.0.0",
+  "description": "test babel usage",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel -d built js/fetch-ip.js"
+  },
+  "author": "ZHU Jie",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}
