@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Ajax Usage</title>
+</head>
+
+<body>
+
+<style>
+    .wrapper {
+        text-align: center;
+        padding-top: 10em;
+    }
+
+    #hint {
+        cursor: pointer;
+        font-size: 32pt;
+    }
+
+    #result {
+        font-size: 24pt;
+    }
+</style>
+
+<div class="wrapper">
+    <div>
+        <span id="hint">Click Me To Get IP Address</span>
+    </div>
+    <div>
+        <span id="result"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+  function get_url(url, cb) {
+    var req;
+    req = new XMLHttpRequest();
+    req.onreadystatechange = cb;
+    req.open("GET", url, true);
+    req.send(null);
+  }
+
+  document.getElementById('hint').onclick = function () {
+    var hint = this;
+
+    get_url('http://ip-api.com/json', function (e) {
+      var req = e.target;
+      if (req.readyState === 1) {
+        // 1 = "opened"
+        hint.textContent = "Retrieving IP address...";
+        hint.style.cursor = "inherit";
+        hint.onclick = null;
+      }
+      if (req.readyState === 4) {
+        // 4 = "loaded"
+        if (req.status === 200) {
+          // 200 = OK
+          console.log(req.response);
+          hint.textContent = "Your IP address is:";
+          document.getElementById('result').textContent = JSON.parse(req.response).query;
+        }
+        else {
+          alert("Problem retrieving data: " + req.status);
+        }
+      }
+    });
+  };
+
+</script>
+
+</body>
+</html>

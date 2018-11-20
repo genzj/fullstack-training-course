@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Handler Warm-up</title>
+</head>
+<body>
+
+<style>
+    body {
+        font-family: 'Roboto', 'Arial', sans-serif;
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(-15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-in-right {
+        from {
+            opacity: 0;
+            transform: translateX(-15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes grow-left {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    .agent-1, .agent-3 {
+        opacity: 0;
+        animation: fade-in-right ease 0.4s forwards;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    .agent-2 {
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: grow-left cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s forwards;
+        animation-delay: 0.4s;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    .agent-3 {
+        animation-delay: 0.8s;
+    }
+
+    .agent-4 {
+        opacity: 0;
+        animation: fade-in-up ease 0.5s forwards;
+        animation-delay: 0.8s;
+    }
+
+    .is-global-centered {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        align-items: center;
+    }
+
+    .has-centered-text {
+        text-align: center;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .wrapper {
+        max-width: 70vw;
+        margin: 5vh auto 0 auto;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+    }
+
+    .header div {
+        margin: 10px 35px;
+    }
+
+    .header div:first-child {
+        margin-left: 0;
+    }
+
+    .header div:last-child {
+        margin-right: 0;
+    }
+
+    .main {
+        line-height: 2.1;
+        text-align: justify;
+    }
+
+    .main p {
+        margin: 3em auto;
+    }
+
+    .has-bottom-border {
+        border-bottom: black solid 1px;
+    }
+
+    .has-links {
+        font-size: 1.2em;
+    }
+
+    .has-links a {
+        padding: 0.5em 0.8em;
+    }
+
+    .has-links a,
+    .has-links a:hover,
+    .has-links a:visited,
+    .has-links a:focus {
+        text-decoration: none;
+        color: black;
+    }
+
+    .has-links a:hover {
+        color: white;
+        background-color: darkslategrey;
+    }
+
+    #enter {
+        font-size: 1.5em;
+    }
+
+</style>
+
+<div class="has-centered-text is-global-centered">
+    <a id="enter" href="#">Enter My Site</a>
+</div>
+
+<div class="wrapper">
+    <div class="hidden header">
+        <div class="agent-1"><h1>My Site</h1></div>
+        <div class="agent-2 has-bottom-border"></div>
+        <div class="agent-3 has-links">
+            <a href="#">Home</a>
+            <a href="#">Articles</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <div class="main hidden agent-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quam nunc, scelerisque ac ligula id,
+            consectetur
+            ultricies diam. Duis quis molestie lacus. Mauris iaculis leo nec metus commodo, eget malesuada lorem
+            aliquam.
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec hendrerit
+            congue luctus. Ut sed porttitor felis. Donec id lorem in lorem venenatis blandit ut in odio. Nam in neque
+            mauris. Cras varius placerat tortor in sodales. Maecenas quis nunc velit. Vestibulum pulvinar, tortor vel
+            vestibulum aliquam, dolor lectus vulputate lectus, vel volutpat lorem nisi at mi. Nulla facilisi. Nullam nec
+            dapibus est. Duis vitae erat turpis.</p>
+
+        <p>Suspendisse lobortis, neque commodo interdum euismod, purus nulla ullamcorper mi, eget iaculis lacus dui sit
+            amet urna. Vestibulum finibus a nibh nec imperdiet. Donec luctus, massa id sollicitudin laoreet, nunc leo
+            porttitor odio, ut commodo nisl quam quis arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            nec
+            lacus fringilla, scelerisque dui a, fringilla risus. Vivamus malesuada dictum felis vitae pharetra.
+            Vestibulum
+            ipsum mauris, pharetra ac nibh sit amet, consequat suscipit nulla. Nullam sollicitudin facilisis velit a
+            rutrum.</p>
+
+        <p>Nulla semper, nisi sit amet lobortis fringilla, turpis libero imperdiet justo, et convallis quam dui interdum
+            metus. Nullam sit amet convallis tortor, sed hendrerit ligula. Curabitur dapibus pulvinar orci ut congue. Ut
+            semper lorem et nisl porta, vitae eleifend nibh mollis. Aliquam quis mi et turpis consequat convallis nec
+            nec
+            libero. Suspendisse quis ultricies libero. Mauris dictum orci justo, ut elementum lorem placerat ut. Donec
+            vel
+            dui ut ipsum laoreet congue. Quisque ut nunc quis leo varius volutpat. Nam vel purus quis neque sollicitudin
+            vulputate. Vestibulum rhoncus dictum posuere. Nullam pretium at neque sed molestie. Curabitur vitae diam vel
+            nulla placerat porttitor ut sed lacus. Cras et interdum quam. Donec vitae nisi sapien.</p>
+
+        <p>Aliquam erat volutpat. Ut mattis ante eget urna vestibulum egestas. Maecenas ut ex ac augue tristique euismod
+            in
+            et est. Cras porttitor velit venenatis lacus elementum, vel accumsan dolor feugiat. Morbi pharetra tortor
+            nisi.
+            Nulla facilisi. Proin ac nibh pulvinar, imperdiet ante sit amet, accumsan risus. Donec placerat ante tellus,
+            vel
+            semper sapien fringilla vitae.</p>
+
+        <p>Cras nunc turpis, gravida vel lectus nec, efficitur porttitor purus. Proin aliquet iaculis magna nec
+            bibendum.
+            Cras in vestibulum diam. Sed diam mi, venenatis sit amet elementum id, blandit non turpis. Suspendisse in
+            est
+            nec velit volutpat condimentum ut id felis. Quisque gravida aliquet suscipit. Sed maximus, urna nec rhoncus
+            volutpat, leo justo finibus ipsum, vitae molestie sem turpis a nisl. Ut vulputate, lectus sit amet blandit
+            congue, felis ligula finibus magna, vel luctus tellus mi vel urna. Morbi tortor velit, feugiat at nunc a,
+            fermentum dictum libero. Mauris molestie, erat eget dictum lobortis, velit metus hendrerit tortor, in
+            fringilla
+            nibh mi eget mi. Cras sagittis malesuada metus, quis condimentum odio pellentesque sit amet. Donec ut tellus
+            ac
+            purus bibendum faucibus.</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('enter').onclick = function () {
+      this.parentNode.style.display = 'none';
+      document.querySelectorAll('div.hidden').forEach(function(ele) {
+        ele.classList.remove('hidden');
+      });
+    }
+</script>
+
+</body>
+</html>

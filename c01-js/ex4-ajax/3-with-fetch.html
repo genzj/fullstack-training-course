@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Usage</title>
+</head>
+
+<body>
+
+<style>
+    .wrapper {
+        text-align: center;
+        padding-top: 10em;
+    }
+
+    #hint {
+        cursor: pointer;
+        font-size: 32pt;
+    }
+
+    #result {
+        font-size: 24pt;
+    }
+</style>
+
+<div class="wrapper">
+    <div>
+        <span id="hint">Click Me To Get IP Address</span>
+    </div>
+    <div>
+        <span id="result"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+  document.getElementById('hint').onclick = function () {
+    let hint = this;
+
+    fetch('http://ip-api.com/json')
+      .then(function (response) {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error(response.status + " " + response.statusText)
+        }
+      })
+      .then(function (data) {
+        let {query:ip, country, city} = data;
+        hint.textContent = "Your IP address is:";
+        document.getElementById('result').textContent = `${ip} (${city}, ${country})`;
+      })
+      .catch(function (e) {
+          alert("Problem retrieving data: " + e);
+        }
+      );
+
+    hint.textContent = "Retrieving IP address...";
+    hint.style.cursor = "inherit";
+    hint.onclick = null;
+  };
+
+</script>
+
+</body>
+</html>
