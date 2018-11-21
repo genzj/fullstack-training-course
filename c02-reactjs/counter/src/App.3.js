@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import rootReducer from './reducer';
 import Counter from "./components/counter";
-import {applyMiddleware, createStore, compose} from "redux";
+import {createStore} from "redux";
 import {connect, Provider} from "react-redux";
-import {resetValue, submitValueAsync} from "./action";
-import thunk from "redux-thunk";
+import {resetValue} from "./action";
 
 class _Content extends Component {
     constructor(props) {
@@ -16,8 +15,7 @@ class _Content extends Component {
     }
 
     submit() {
-        // alert(`submit value: ${this.props.value}`);
-        this.props.dispatch(submitValueAsync());
+        alert(`submit value: ${this.props.value}`);
     }
 
     reset() {
@@ -30,11 +28,6 @@ class _Content extends Component {
                 <Counter />
                 <button onClick={this.submit}>submit</button>
                 <button onClick={this.reset}>reset</button>
-                <div>
-                    <pre>
-                        {this.props.log}
-                    </pre>
-                </div>
             </div>
         );
     }
@@ -42,15 +35,11 @@ class _Content extends Component {
 
 const Content = connect(state => ({
     value: state.value.value,
-    log: state.log.log,
 }))(_Content);
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTESION_COMPOSE__ || compose
 const store = createStore(
     rootReducer,
-    composeEnhancer(applyMiddleware(
-        thunk
-    ))
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 class App extends Component {

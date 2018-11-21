@@ -1,4 +1,4 @@
-import {RESET_VALUE, SET_LOG, UPDATE_VALUE} from "./action";
+import {RESET_VALUE, UPDATE_VALUE} from "./action";
 import {combineReducers} from 'redux';
 
 const initialValueState = {
@@ -16,22 +16,6 @@ const value = (state = initialValueState, {type, ...args}) => {
     }
 };
 
-const initialLogState = {
-    log: ''
-};
-
-const log = (state = initialLogState, {type, ...args}) => {
-    switch (type) {
-        case SET_LOG:
-            return {
-                log: state.log + '\n' + new Date() + ' ' + args.log,
-            };
-        default:
-            return state;
-    }
-};
-
 export default combineReducers({
     value,
-    log,
 });
