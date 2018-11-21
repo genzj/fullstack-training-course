@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="text-center">
+  <app-counter [value]="value" (update)="onUpdate($event)"></app-counter>
+</div>
+<div [class.text-center]="true">
+  <button (click)="onSubmit()">Submit</button>
+  <button (click)="onReset()">Reset</button>
+</div>
+<div>
+  <code>
+    <pre>{{ log }}</pre>
+  </code>
+</div>
