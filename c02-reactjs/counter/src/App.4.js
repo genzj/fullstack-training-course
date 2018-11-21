@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import rootReducer from './reducer';
 import Counter from "./components/counter";
@@ -7,7 +6,6 @@ import {applyMiddleware, createStore, compose} from "redux";
 import {connect, Provider} from "react-redux";
 import {resetValue, submitValueAsync} from "./action";
 import thunk from "redux-thunk";
-import {Button, Col, Container, Row} from "reactstrap";
 
 class _Content extends Component {
     constructor(props) {
@@ -28,23 +26,16 @@ class _Content extends Component {
 
     render() {
         return (
-            <Container className="App">
-                <h1>Counter Demo</h1>
-                <Row className='justify-content-center mb-5'>
-                    <Counter/>
-                </Row>
-                <Row className='justify-content-center'>
-                    <Col xs={12} sm='auto'><Button color='primary' onClick={this.submit}>Submit</Button></Col>
-                    <Col xs={12} sm='auto'><Button color='danger' onClick={this.reset}>Reset</Button></Col>
-                </Row>
-                <Row>
-                    <code>
-                        <pre>
-                            {this.props.log}
-                        </pre>
-                    </code>
-                </Row>
-            </Container>
+            <div className="App">
+                <Counter />
+                <button onClick={this.submit}>submit</button>
+                <button onClick={this.reset}>reset</button>
+                <div>
+                    <pre>
+                        {this.props.log}
+                    </pre>
+                </div>
+            </div>
         );
     }
 }
@@ -64,7 +55,7 @@ const store = createStore(
 
 class App extends Component {
     render() {
-        return <Provider store={store}><Content/></Provider>;
+        return <Provider store={store}><Content /></Provider>;
     }
 }
 
